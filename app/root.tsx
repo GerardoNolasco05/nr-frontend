@@ -1,3 +1,5 @@
+import DissolveFilterDefs from "~/components/DissolveFilterDefs";
+
 import {
   isRouteErrorResponse,
   Links,
@@ -24,8 +26,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className='min-h-screen bg-gray-50 text-gray-800'>
         {children}
+        <DissolveFilterDefs />
         <ScrollRestoration />
-        <Scripts />
+        <Scripts />  
       </body>
     </html>
   );
