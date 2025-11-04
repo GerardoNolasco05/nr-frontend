@@ -2,39 +2,68 @@ import { useEffect, useRef, useState } from "react";
 
 interface TypewriterProps {
   text: string;
-  speed?: number;      // ms per character
-  showCursor?: boolean;
+  speed?: number;        // ms per character
+  showCursor?: boolean;  // show cursor during typing (solid), then blink after
+  cursorSpeed?: number;  // ms per blink after finishing
 }
 
 export default function Typewriter({
   text,
-  speed = 100,
+  speed = 20,
   showCursor = true,
+  cursorSpeed = 500,
 }: TypewriterProps) {
-  const [index, setIndex] = useState(0);
-  const startedRef = useRef(false); // prevents double start in Strict Mode
+  const [displayed, setDisplayed] = useState("");
+  const [finished, setFinished] = useState(false);
+  const [cursorOn, setCursorOn] = useState(true);
+  const startedRef = useRef(false);
 
-  // Reset when text changes
+  // Reset on text change
   useEffect(() => {
-    setIndex(0);
+    setDisplayed("");
+    setFinished(false);
+    setCursorOn(true);
     startedRef.current = false;
   }, [text]);
 
-  // Typing loop (Strict Mode safe)
+  // Typing effect (Strict Mode safe)
   useEffect(() => {
-    if (index >= text.length) return;
+    if (startedRef.current) return;
+    startedRef.current = true;
 
-    // only start once per mount
-    if (!startedRef.current) startedRef.current = true;
+    let i = 0;
+    const id = setInterval(() => {
+      setDisplayed(text.slice(0, i));
+      i++;
+      if (i > text.length) {
+        clearInterval(id);
+        setFinished(true);
+      }
+    }, speed);
 
-    const id = setTimeout(() => setIndex((i) => i + 1), speed);
-    return () => clearTimeout(id);
-  }, [index, text, speed]);
+    return () => clearInterval(id);
+  }, [text, speed]);
+
+  // Blink only after finished
+  useEffect(() => {
+    if (!showCursor || !finished) return;
+    const id = setInterval(() => setCursorOn((v) => !v), cursorSpeed);
+    return () => clearInterval(id);
+  }, [showCursor, cursorSpeed, finished]);
 
   return (
-    <span className="whitespace-pre">
-      {text.slice(0, index)}
-      {showCursor && <span className="animate-blink">_</span>}
+    <span className="whitespace-pre-line">
+      {displayed}
+      {showCursor && (
+        <span
+          aria-hidden="true"
+          className="inline-block"
+          // Solid underscore while typing; blink after finished
+          style={{ opacity: finished ? (cursorOn ? 1 : 0) : 1 }}
+        >
+          _
+        </span>
+      )}
     </span>
   );
 }
