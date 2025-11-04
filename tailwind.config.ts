@@ -7,7 +7,11 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx}',    // for React Router (framework mode)
   ],
   theme: {
-    extend: {},                      // place to add custom colors, fonts, etc.
+    extend: {
+      fontFamily: {
+        dos: ["'Perfect DOS VGA 437'", 'monospace'], // MS-DOS style font
+      },
+    },
   },
   plugins: [],
 };

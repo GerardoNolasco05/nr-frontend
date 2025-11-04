@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
+/* Register the DOS font */
+@font-face {
+  font-family: "Perfect DOS VGA 437";
+  src: url("/src/assets/fonts/PerfectDOSVGA437.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Theme Tokens */
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
 
-html,
-body {
-  @apply bg-white dark:bg-black;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  /* Add the DOS font family */
+  --font-dos: "Perfect DOS VGA 437", monospace;
 }
