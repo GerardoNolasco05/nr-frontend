@@ -45,7 +45,7 @@ export default function Navbar({
       {/* === OUTER WINDOW === */}
       <div className="bg-[#b9c7d5] border border-[#4b5563] rounded-[2px] shadow-[inset_1px_1px_0_#ffffff,inset_-1px_-1px_0_#4b5563]">
         {/* === TITLE BAR === */}
-        <div className="flex items-center justify-between bg-[#000080] text-white px-2 py-1">
+        <div className="flex items-center justify-between bg-pink-400 text-white px-2 py-1">
           <span className="font-dos tracking-wide">noreference</span>
         </div>
 
@@ -76,8 +76,8 @@ export default function Navbar({
                 className="
                   w-[20px] h-[20px]
                   bg-[#b9c7d5]
-                  border border-[#4b5563]
-                  
+                  cursor-pointer
+                  border border-[#4b5563] 
                   flex items-center justify-center
                   active:shadow-[inset_1px_1px_0_#4b5563,inset_-1px_-1px_0_#9aa9b7]
                 "
@@ -114,6 +114,7 @@ export default function Navbar({
                           className="
                             w-full text-left px-2 py-1
                             bg-[#ffffff]
+                            cursor-pointer
                             hover:bg-[#d4d7db]
                             active:bg-[#9aa9b7]
                             text-black
@@ -130,13 +131,13 @@ export default function Navbar({
             </div>
 
             {/* === TOOLBAR BUTTONS (3D VOLUME) === */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center  gap-1">
               {Array.from({ length: 6 }).map((_, i) => (
                 <button
                   key={i}
                   onClick={(e) => e.preventDefault()}
                   aria-label={`Toolbar button ${i + 1}`}
-                  className="btn95 btn95--square"
+                  className="btn95 btn95--square cursor-pointer"
                 />
               ))}
             </div>

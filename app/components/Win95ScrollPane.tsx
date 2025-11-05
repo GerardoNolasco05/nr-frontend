@@ -135,6 +135,7 @@ export default function Win95ScrollPane({
         <button
           className="
             h-[16px] bg-[#b9c7d5]
+            cursor-pointer
             border-t border-l border-[#4b5563]
             border-b border-r border-white
             grid place-items-center
@@ -178,6 +179,7 @@ export default function Win95ScrollPane({
         <button
           className="
             h-[16px] bg-[#b9c7d5]
+            cursor-pointer
             border-b border-l border-[#4b5563]
             border-t border-r border-white
             grid place-items-center
