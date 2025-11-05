@@ -16,3 +16,129 @@
   /* Add the DOS font family */
   --font-dos: "Perfect DOS VGA 437", monospace;
 }
+
+/* ===== Win95 vertical scrollbar: rectangular thumb + top/bottom arrow buttons ===== */
+.win95-scrollbar {
+  scrollbar-gutter: stable;           /* always visible space */
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #b9c7d5;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+.win95-scrollbar::-webkit-scrollbar {
+  width: 14px;
+  height: 0;
+  background: #b9c7d5;
+}
+
+.win95-scrollbar::-webkit-scrollbar-track {
+  background: #b9c7d5;
+  border-left: 1px solid #4b5563;
+  border-right: 1px solid #ffffff;
+  border-radius: 0;
+}
+
+.win95-scrollbar::-webkit-scrollbar-thumb {
+  background: #9aa9b7;
+  border: 1px solid #4b5563;
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #4b5563;
+  border-radius: 0;
+}
+
+/* Arrow buttons (top & bottom) */
+.win95-scrollbar::-webkit-scrollbar-button {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: #b9c7d5;
+  border-left: 1px solid #4b5563;
+  border-right: 1px solid #ffffff;
+  border-top: 1px solid #4b5563;
+  border-bottom: 1px solid #ffffff;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ▲ Up */
+.win95-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'>\
+<polygon points='6,3 10,9 2,9' fill='black'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'>\
+<polygon points='6,3 10,9 2,9' fill='black'/></svg>");
+  background-color: #000;
+}
+
+/* ▼ Down */
+.win95-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'>\
+<polygon points='2,3 10,3 6,9' fill='black'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'>\
+<polygon points='2,3 10,3 6,9' fill='black'/></svg>");
+  background-color: #000;
+}
+
+/* Pressed effect */
+.win95-scrollbar::-webkit-scrollbar-button:active {
+  border-left-color: #ffffff;
+  border-top-color: #ffffff;
+  border-right-color: #4b5563;
+  border-bottom-color: #4b5563;
+}
+
+/* Hide horizontal scrollbar */
+.win95-scrollbar::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+/* ----- Win95 3D Button (raised, with depth) ----- */
+@layer components {
+  .btn95 {
+    background: #b9c7d5;                  /* Win95 light steel blue */
+    border-top: 1px solid #ffffff;        /* light top/left */
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #4b5563;      /* dark right/bottom */
+    border-bottom: 1px solid #4b5563;
+    box-shadow:
+      0 1px 0 #9aa9b7,                    /* soft drop shadow for volume */
+      inset 0 0 0 0 transparent;
+    outline: none;
+    user-select: none;
+  }
+  .btn95:hover {
+    filter: brightness(1.02);
+  }
+  .btn95:active {
+    /* pressed in: invert bevel + subtle inset shadow */
+    border-top-color: #4b5563;
+    border-left-color: #4b5563;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    box-shadow:
+      inset 1px 1px 0 #9aa9b7,
+      inset -1px -1px 0 #4b5563;
+    transform: translateY(1px);
+  }
+
+  /* Small square toolbar button (no icon for now) */
+  .btn95--square {
+    width: 24px;  /* w-6 */
+    height: 24px; /* h-6 */
+    display: grid;
+    place-items: center;
+  }
+
+  /* Down-arrow triangle for the menu button */
+  .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #000000;
+  }
+}
