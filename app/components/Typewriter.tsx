@@ -5,6 +5,7 @@ interface TypewriterProps {
   speed?: number;        // ms per character
   showCursor?: boolean;  // show cursor during typing (solid), then blink after
   cursorSpeed?: number;  // ms per blink after finishing
+  onComplete?: () => void; // 🔹 new optional callback
 }
 
 export default function Typewriter({
@@ -12,6 +13,7 @@ export default function Typewriter({
   speed = 20,
   showCursor = true,
   cursorSpeed = 500,
+  onComplete, // 🔹 include prop
 }: TypewriterProps) {
   const [displayed, setDisplayed] = useState("");
   const [finished, setFinished] = useState(false);
@@ -38,11 +40,12 @@ export default function Typewriter({
       if (i > text.length) {
         clearInterval(id);
         setFinished(true);
+        if (onComplete) onComplete(); // 🔹 trigger callback when finished
       }
     }, speed);
 
     return () => clearInterval(id);
-  }, [text, speed]);
+  }, [text, speed, onComplete]);
 
   // Blink only after finished
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router"; // 🔹 for navigation
 import Navbar from "../components/Navbar";
 import Typewriter from "../components/Typewriter";
 import ContactForm from "../components/ContactForm";
@@ -12,10 +13,10 @@ type MenuKey = "About" | "Projects" | "Team" | "Contact" | "Privacy Policy";
 
 export default function Home() {
   const [active, setActive] = useState<MenuKey>("About");
+  const navigate = useNavigate(); // 🔹 navigation hook
+  const [showEnter, setShowEnter] = useState(false); // 🔹 show button after typing
 
-  // Helper to safely get English text from various JSON shapes.
   const getText = (obj: any): string => {
-    // prefer .en.intro, then .en.text, then .en
     return obj?.en?.intro ?? obj?.en?.text ?? (typeof obj?.en === "string" ? obj.en : "");
   };
 
@@ -27,38 +28,67 @@ export default function Home() {
             <Typewriter text={getText(aboutData)} speed={10} />
           </p>
         );
+
       case "Projects":
         return (
-          <p className="text-stone-400 font-dos text-base leading-relaxed text-justify whitespace-pre-line">
-            <Typewriter text={getText(projectsData)} speed={10} />
-          </p>
+          <div className="space-y-6">
+            <p className="text-stone-400 font-dos text-base leading-relaxed text-justify whitespace-pre-line">
+              <Typewriter
+                text={getText(projectsData)}
+                speed={10}
+                onComplete={() => setShowEnter(true)} // 🔹 show button when done
+              />
+            </p>
+
+            {/* 🔹 ENTER Button */}
+            {showEnter && (
+              <div className="flex justify-center -mt-5">
+                <button
+                  onClick={() => navigate("/projects")}
+                  className="
+                    btn95 px-4 py-1 text-sm font-dos cursor-pointer bg-pink-400
+                    hover:brightness-110 active:translate-y-[1px]
+                  "
+                >
+                  ENTER
+                </button>
+              </div>
+            )}
+          </div>
         );
+
       case "Team":
         return (
           <p className="text-stone-400 font-dos text-base leading-relaxed text-justify whitespace-pre-line">
             <Typewriter text={getText(teamData)} speed={10} />
           </p>
         );
+
+      case "Contact":
+        return <ContactForm />;
+
       case "Privacy Policy":
         return (
           <p className="text-stone-400 font-dos text-base leading-relaxed text-justify whitespace-pre-line">
             <Typewriter text={getText(privacyData)} speed={10} />
           </p>
         );
-      case "Contact":
-        return <ContactForm />;
+
       default:
         return null;
     }
-  }, [active]);
+  }, [active, navigate, showEnter]);
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-6">
       <Navbar
         widthClass="max-w-3xl w-full"
-        heightClass="h-[60vh]"
+        heightClass="h-[75.7vh]"
         active={active}
-        onSelect={(item) => setActive(item as MenuKey)}
+        onSelect={(item) => {
+          setActive(item as MenuKey);
+          setShowEnter(false); // 🔹 reset when switching menu
+        }}
       >
         {content}
       </Navbar>

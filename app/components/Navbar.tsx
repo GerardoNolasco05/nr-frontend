@@ -36,8 +36,7 @@ export default function Navbar({
   }, []);
 
   const choose = (item: string) => {
-    // 🔹 Call parent onSelect so Home.tsx updates content
-    if (onSelect) onSelect(item);
+    onSelect?.(item);
     setOpen(false);
   };
 
@@ -61,7 +60,7 @@ export default function Navbar({
                 bg-[#ffffff]
                 border border-[#4b5563]
                 shadow-[inset_1px_1px_0_#9aa9b7,inset_-1px_-1px_0_#ffffff]
-                px-0 py-0
+                px-0 py-[0px]
                 min-w-[135px]
               "
             >
@@ -78,7 +77,7 @@ export default function Navbar({
                   w-[20px] h-[20px]
                   bg-[#b9c7d5]
                   cursor-pointer
-                  border border-[#4b5563]
+                  border border-[#4b5563] 
                   flex items-center justify-center
                   active:shadow-[inset_1px_1px_0_#4b5563,inset_-1px_-1px_0_#9aa9b7]
                 "
@@ -100,7 +99,7 @@ export default function Navbar({
                 <div
                   className="
                     absolute left-0 top-[calc(100%+4px)]
-                    z-50 w-[135px] max-h-48 overflow-auto
+                    z-50 w-33.5 max-h-48 overflow-auto
                     bg-[#ffffff]
                     border border-[#4b5563]
                     shadow-[inset_1px_1px_0_#9aa9b7,inset_-1px_-1px_0_#ffffff]
@@ -132,7 +131,7 @@ export default function Navbar({
             </div>
 
             {/* === TOOLBAR BUTTONS (3D VOLUME) === */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center  gap-1">
               {Array.from({ length: 6 }).map((_, i) => (
                 <button
                   key={i}

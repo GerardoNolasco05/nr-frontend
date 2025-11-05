@@ -65,7 +65,7 @@ export default function ContactForm() {
       </div>
 
       <div className="pt-2">
-        <button type="submit" className="px-3 py-1 bg-pink-400 text-white hover:bg-blue-600 rounded">
+        <button type="submit" className="px-3 py-1 bg-pink-400 cursor-pointer  text-white hover:bg-blue-600 rounded">
           Send
         </button>
       </div>
