@@ -142,3 +142,14 @@
     border-top: 6px solid #000000;
   }
 }
+
+.menu95 button {
+  padding: 2px 8px;
+  font-family: var(--font-dos, monospace);
+}
+.menu95 button:hover {
+  background: #d4d7db;
+}
+.menu95 button:active {
+  background: #9aa9b7;
+}

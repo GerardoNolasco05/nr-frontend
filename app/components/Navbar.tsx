@@ -4,8 +4,8 @@ import Win95ScrollPane from "./Win95ScrollPane";
 const MENU = ["About", "Goal", "Projects", "Team", "Contact", "Privacy Policy"];
 
 interface NavbarProps {
-  widthClass?: string;   // e.g. "max-w-3xl w-full"
-  heightClass?: string;  // e.g. "h-[60vh]"
+  widthClass?: string;
+  heightClass?: string;
   children?: React.ReactNode;
   active?: string;
   onSelect?: (item: string) => void;
@@ -45,48 +45,65 @@ export default function Navbar({
       {/* === OUTER WINDOW === */}
       <div className="bg-[#b9c7d5] border border-[#4b5563] rounded-[2px] shadow-[inset_1px_1px_0_#ffffff,inset_-1px_-1px_0_#4b5563]">
         {/* === TITLE BAR === */}
-        <div className="flex items-center justify-between bg-pink-400 text-white px-2 py-1">
+        <div className="flex items-center justify-between bg-[#000080] text-white px-2 py-1">
           <span className="font-dos tracking-wide">noreference</span>
         </div>
 
         {/* === TOOLBAR === */}
         <div className="px-2 py-2 bg-[#b9c7d5] border-t border-[#dfe6ed]">
           <div className="flex items-center gap-2">
-            {/* MENU FIELD + BUTTON */}
-            <div ref={groupRef} className="relative flex items-center gap-1">
-              {/* Inset label field */}
-              <div
-                className="
-                  bg-[#b9c7d5]
-                  border-t border-l border-[#4b5563]
-                  border-b border-r border-white
-                  px-2 py-[3px]
-                  text-[12px] leading-none font-dos text-black
-                  min-w-[92px]
-                "
-              >
+            {/* === MENU FIELD (recessed integrated style) === */}
+            <div
+              ref={groupRef}
+              className="
+                relative flex items-center gap-1
+                bg-[#ffffff]
+                border border-[#4b5563]
+                shadow-[inset_1px_1px_0_#9aa9b7,inset_-1px_-1px_0_#ffffff]
+                px-0 py-[0px]
+                min-w-[135px]
+              "
+            >
+              {/* Label */}
+              <span className="text-[12px] font-dos text-black flex-1 pl-1">
                 {active}
-              </div>
+              </span>
 
-              {/* ▼ button with Win95 volume */}
+              {/* ▼ Button (integrated look) */}
               <button
                 aria-label="Open menu"
                 onClick={() => setOpen((v) => !v)}
-                className="btn95 btn95--square"
+                className="
+                  w-[20px] h-[20px]
+                  bg-[#b9c7d5]
+                  border border-[#4b5563]
+                  
+                  flex items-center justify-center
+                  active:shadow-[inset_1px_1px_0_#4b5563,inset_-1px_-1px_0_#9aa9b7]
+                "
               >
-                <span className="arrow-down" />
+                <span
+                  className="block"
+                  style={{
+                    width: 0,
+                    height: 0,
+                    borderLeft: "4px solid transparent",
+                    borderRight: "4px solid transparent",
+                    borderTop: "6px solid #000000",
+                  }}
+                />
               </button>
 
-              {/* Dropdown */}
+              {/* === DROPDOWN MENU === */}
               {open && (
                 <div
                   className="
-                    absolute left-0 top-[calc(100%+6px)]
-                    z-50 w-44 max-h-48 overflow-auto
-                    bg-[#b9c7d5]
+                    absolute left-0 top-[calc(100%+4px)]
+                    z-50 w-33.5 max-h-48 overflow-auto
+                    bg-[#ffffff]
                     border border-[#4b5563]
-                    shadow-[inset_1px_1px_0_#ffffff,inset_-1px_-1px_0_#4b5563]
-                    p-1
+                    shadow-[inset_1px_1px_0_#9aa9b7,inset_-1px_-1px_0_#ffffff]
+                    p-[2px]
                   "
                 >
                   <ul className="font-dos text-[12px] text-black">
@@ -96,8 +113,11 @@ export default function Navbar({
                           onClick={() => choose(item)}
                           className="
                             w-full text-left px-2 py-1
-                            hover:bg-[#9aa9b7]
-                            focus:outline-none
+                            bg-[#ffffff]
+                            hover:bg-[#d4d7db]
+                            active:bg-[#9aa9b7]
+                            text-black
+                            font-dos
                           "
                         >
                           {item}
@@ -109,7 +129,7 @@ export default function Navbar({
               )}
             </div>
 
-            {/* Blank toolbar buttons (3D style) */}
+            {/* === TOOLBAR BUTTONS (3D VOLUME) === */}
             <div className="flex items-center gap-1">
               {Array.from({ length: 6 }).map((_, i) => (
                 <button
@@ -129,7 +149,7 @@ export default function Navbar({
             {children}
           </Win95ScrollPane>
 
-          {/* bottom strip */}
+          {/* Bottom frame strip */}
           <div className="h-[14px] bg-[#b9c7d5] mt-1 border-t border-white shadow-[inset_0_1px_0_#4b5563]" />
         </div>
       </div>
