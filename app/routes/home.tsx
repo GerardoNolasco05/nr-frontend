@@ -83,7 +83,7 @@ export default function Home() {
     <div className="min-h-screen bg-black flex items-center justify-center px-6">
       <Navbar
         widthClass="max-w-3xl w-full"
-        heightClass="h-[75.7vh]"
+        heightClass="h-[60vh]"
         active={active}
         onSelect={(item) => {
           setActive(item as MenuKey);
