@@ -106,7 +106,7 @@ export default function Home() {
         if (pdfSrc) {
           return (
             <div className="flex justify-center items-center w-full h-full">
-              <div className="relative w-[100%] h-[750px] overflow-hidden">
+              <div className="relative w-[100%] h-[750px] ml-1 overflow-hidden">
                 {/* Push iframe scrollbar out of view but keep scrolling via mouse wheel */}
                 <iframe
                   src={pdfOnlyPages(pdfSrc)}
