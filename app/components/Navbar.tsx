@@ -16,6 +16,7 @@ interface NavbarProps {
   active?: string;
   onSelect?: (item: string) => void;
   showTools?: boolean; // ✅ controls toolbar visibility
+  onToolPress?: (index: number) => void; // ✅ NEW: notify parent when a tool button is clicked
 }
 
 export default function Navbar({
@@ -25,6 +26,7 @@ export default function Navbar({
   active = "About",
   onSelect,
   showTools = false,
+  onToolPress, // ✅ NEW
 }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const groupRef = useRef<HTMLDivElement>(null);
@@ -141,8 +143,7 @@ export default function Navbar({
               )}
             </div>
 
-            
-          {/* === TOOLBAR BUTTONS (with icons) === */}
+            {/* === TOOLBAR BUTTONS (with icons) === */}
             <div
               className={`flex items-center gap-1 transition-all duration-200 ${
                 showTools ? "opacity-100 visible" : "opacity-0 invisible"
@@ -152,7 +153,7 @@ export default function Navbar({
               {toolIcons.map((src, i) => (
                 <button
                   key={i}
-                  onClick={(e) => e.preventDefault()}
+                  onClick={() => onToolPress?.(i)}   // ✅ now notifies parent
                   aria-label={`Toolbar button ${i + 1}`}
                   className="btn95 btn95--square cursor-pointer flex items-center justify-center w-[26px] h-[26px]"
                 >
