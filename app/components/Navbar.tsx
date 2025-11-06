@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Win95ScrollPane from "./Win95ScrollPane";
 
+// ✅ Import icons from your local assets
+import iconA from "../assets/images/iconA.png";
+import iconJ from "../assets/images/iconJ.png";
+import iconB from "../assets/images/iconB.png";
+import iconW from "../assets/images/iconW.png";
+
 const MENU = ["About", "Projects", "Team", "Contact", "Privacy Policy"];
 
 interface NavbarProps {
@@ -9,14 +15,16 @@ interface NavbarProps {
   children?: React.ReactNode;
   active?: string;
   onSelect?: (item: string) => void;
+  showTools?: boolean; // ✅ controls toolbar visibility
 }
 
 export default function Navbar({
-  widthClass = "max-w-3xl w-full",
-  heightClass = "h-[60vh]",
+  widthClass = "w-[850px]",
+  heightClass = "h-[550px]",
   children,
   active = "About",
   onSelect,
+  showTools = false,
 }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const groupRef = useRef<HTMLDivElement>(null);
@@ -39,6 +47,9 @@ export default function Navbar({
     onSelect?.(item);
     setOpen(false);
   };
+
+  // ✅ Icon sources (imported above)
+  const toolIcons = [iconA, iconJ, iconB, iconW];
 
   return (
     <div className={`select-none ${widthClass}`}>
@@ -99,7 +110,7 @@ export default function Navbar({
                 <div
                   className="
                     absolute left-0 top-[calc(100%+4px)]
-                    z-50 w-33.5 max-h-48 overflow-auto
+                    z-50 w-[135px] max-h-48 overflow-auto
                     bg-[#ffffff]
                     border border-[#4b5563]
                     shadow-[inset_1px_1px_0_#9aa9b7,inset_-1px_-1px_0_#ffffff]
@@ -130,15 +141,27 @@ export default function Navbar({
               )}
             </div>
 
-            {/* === TOOLBAR BUTTONS (3D VOLUME) === */}
-            <div className="flex items-center  gap-1">
-              {Array.from({ length: 6 }).map((_, i) => (
+            
+          {/* === TOOLBAR BUTTONS (with icons) === */}
+            <div
+              className={`flex items-center gap-1 transition-all duration-200 ${
+                showTools ? "opacity-100 visible" : "opacity-0 invisible"
+              }`}
+              style={{ minHeight: "28px" }} // 👈 keeps height constant so layout doesn’t jump
+            >
+              {toolIcons.map((src, i) => (
                 <button
                   key={i}
                   onClick={(e) => e.preventDefault()}
                   aria-label={`Toolbar button ${i + 1}`}
-                  className="btn95 btn95--square cursor-pointer"
-                />
+                  className="btn95 btn95--square cursor-pointer flex items-center justify-center w-[26px] h-[26px]"
+                >
+                  <img
+                    src={src}
+                    alt={`icon ${i + 1}`}
+                    className="w-[22px] h-[22px] object-contain pointer-events-none"
+                  />
+                </button>
               ))}
             </div>
           </div>
@@ -147,7 +170,7 @@ export default function Navbar({
         {/* === TERMINAL FRAME === */}
         <div className="mx-2 mb-2 bg-[#b9c7d5] border border-[#4b5563] shadow-[inset_1px_1px_0_#ffffff,inset_-1px_-1px_0_#4b5563] p-1">
           <Win95ScrollPane heightClass={heightClass} contentClassName="p-4">
-            {children}
+            {children && children}
           </Win95ScrollPane>
 
           {/* Bottom frame strip */}

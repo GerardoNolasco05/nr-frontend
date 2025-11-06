@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router"; // 🔹 for navigation
+import { useNavigate } from "react-router";
 import Navbar from "../components/Navbar";
 import Typewriter from "../components/Typewriter";
 import ContactForm from "../components/ContactForm";
@@ -13,8 +13,8 @@ type MenuKey = "About" | "Projects" | "Team" | "Contact" | "Privacy Policy";
 
 export default function Home() {
   const [active, setActive] = useState<MenuKey>("About");
-  const navigate = useNavigate(); // 🔹 navigation hook
-  const [showEnter, setShowEnter] = useState(false); // 🔹 show button after typing
+  const navigate = useNavigate();
+  const [showEnter, setShowEnter] = useState(false);
 
   const getText = (obj: any): string => {
     return obj?.en?.intro ?? obj?.en?.text ?? (typeof obj?.en === "string" ? obj.en : "");
@@ -31,30 +31,9 @@ export default function Home() {
 
       case "Projects":
         return (
-          <div className="space-y-6">
-            <p className="text-stone-400 font-dos text-base leading-relaxed text-justify whitespace-pre-line">
-              <Typewriter
-                text={getText(projectsData)}
-                speed={10}
-                onComplete={() => setShowEnter(true)} // 🔹 show button when done
-              />
-            </p>
-
-            {/* 🔹 ENTER Button */}
-            {showEnter && (
-              <div className="flex justify-center -mt-5">
-                <button
-                  onClick={() => navigate("/projects")}
-                  className="
-                    btn95 px-4 py-1 text-sm font-dos cursor-pointer bg-pink-400
-                    hover:brightness-110 active:translate-y-[1px]
-                  "
-                >
-                  ENTER
-                </button>
-              </div>
-            )}
-          </div>
+          <p className="text-stone-400 font-dos text-base leading-relaxed text-justify whitespace-pre-line">
+            <Typewriter text={getText(projectsData)} speed={10} />
+          </p>
         );
 
       case "Team":
@@ -77,17 +56,17 @@ export default function Home() {
       default:
         return null;
     }
-  }, [active, navigate, showEnter]);
+  }, [active, navigate]);
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-6">
+      {/* ✅ Toolbar buttons visible only in “Projects” */}
       <Navbar
-        widthClass="max-w-3xl w-full"
-        heightClass="h-[60vh]"
         active={active}
+        showTools={active === "Projects"}
         onSelect={(item) => {
           setActive(item as MenuKey);
-          setShowEnter(false); // 🔹 reset when switching menu
+          setShowEnter(false);
         }}
       >
         {content}
