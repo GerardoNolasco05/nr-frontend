@@ -1,11 +1,77 @@
 {
   "en": {
-    "intro": "const Team = {\ndescription: \"This assembly of collaborators forms a dynamic, non-hierarchical network in which human and nonhuman agencies - including organic, inorganic, and digital forms - are regarded with equal ontological significance. Through this entangled approach, each project becomes an ecosystem of interdependent relationships where knowledge production is collective, emergent, and regenerative. Our aim is to foster a framework where disciplinary boundaries dissolve, to enable speculative practices, critical inquiry and experimentation.\",\n\n  actants: {\n    Gerardo_Nolasco: \"Multidisciplinary artist who coordinates all steps of the projects.\",\n    Jose_Magana: \"Cultural anthropologist who conducts the research for the projects.\",\n    Hiyori_Yoshida: \"Experimental composer who develops the music and sound installations of the projects.\",\n    Iska_Dimalanta: \"Coder and creative technologist supporting programming implementation.\",\n    Soren_Ravn: \"Designer handling the implementation of visual design, 3D modelling, AR, and VR for the projects.\",\n    Fenja_Vollbrecht: \"Provides scientific insights to the projects.\",\n    Tobias_Ziebell: \"Industrial designer who develops all technical aspects of the project, from initial setups to final production.\",\n    Lupita_Ndlovu: \"Speculative storyteller developing short stories and narrative elements.\",\n    Gellert_Rozsas: \"Fictional filmmaker responsible for producing the videos and animations of the projects.\",\n    Janos_Kovacs: \"Specialized in contemporary and new media art, develops the conceptual framework for the exhibition of the projects.\"\n  }\n};"
-  },
-  "es": {
-    "intro": "const Equipo = {\n  descripcion: \"Este grupo de colaboradores forma una red dinámica y no jerárquica en la que las agencias humanas y no humanas —incluidas las formas orgánicas, inorgánicas y digitales— se consideran con igual importancia ontológica. A través de este enfoque entrelazado, cada proyecto se convierte en un ecosistema de relaciones interdependientes donde la producción de conocimiento es colectiva, emergente y regenerativa. Nuestro objetivo es fomentar un marco en el que las fronteras disciplinarias se disuelvan para permitir prácticas especulativas, investigación crítica y experimentación.\",\n\n  actantes: {\n    Gerardo_Nolasco: \"Artista multidisciplinario que coordina todas las etapas de los proyectos.\",\n    Jose_Magana: \"Antropólogo cultural que realiza la investigación para los proyectos.\",\n    Hiyori_Yoshida: \"Compositora experimental que desarrolla la música y las instalaciones sonoras de los proyectos.\",\n    Iska_Dimalanta: \"Programadora y tecnóloga creativa que apoya la implementación de programación.\",\n    Soren_Ravn: \"Diseñador encargado del diseño visual, modelado 3D, AR y VR de los proyectos.\",\n    Fenja_Vollbrecht: \"Aporta perspectivas científicas a los proyectos.\",\n    Tobias_Ziebell: \"Diseñador industrial que desarrolla los aspectos técnicos del proyecto, desde la configuración inicial hasta la producción final.\",\n    Lupita_Ndlovu: \"Narradora especulativa que desarrolla relatos cortos y elementos narrativos.\",\n    Gellert_Rozsas: \"Cineasta ficticio responsable de producir los videos y animaciones de los proyectos.\",\n    Janos_Kovacs: \"Especialista en arte contemporáneo y nuevos medios, desarrolla el marco conceptual para la exhibición de los proyectos.\"\n  }\n};"
-  },
-  "de": {
-    "intro": "const Team = {\n  beschreibung: \"Diese Gruppe von Mitwirkenden bildet ein dynamisches, nicht-hierarchisches Netzwerk, in dem menschliche und nichtmenschliche Akteure – einschließlich organischer, anorganischer und digitaler Formen – als gleichwertig angesehen werden. Durch diesen verflochtenen Ansatz wird jedes Projekt zu einem Ökosystem wechselseitiger Beziehungen, in dem Wissen kollektiv, emergent und regenerativ entsteht. Unser Ziel ist es, einen Rahmen zu fördern, in dem disziplinäre Grenzen sich auflösen, um spekulative Praxis, kritische Forschung und Experimentation zu ermöglichen.\",\n\n  akteure: {\n    Gerardo_Nolasco: \"Multidisziplinärer Künstler, der alle Schritte der Projekte koordiniert.\",\n    Jose_Magana: \"Kulturanthropologe, der die Forschung für die Projekte durchführt.\",\n    Hiyori_Yoshida: \"Experimentelle Komponistin, die Musik und Klanginstallationen der Projekte entwickelt.\",\n    Iska_Dimalanta: \"Programmiererin und kreative Technologin, die die technische Umsetzung unterstützt.\",\n    Soren_Ravn: \"Designer, zuständig für visuelles Design, 3D-Modellierung, AR und VR in den Projekten.\",\n    Fenja_Vollbrecht: \"Bringt wissenschaftliche Erkenntnisse in die Projekte ein.\",\n    Tobias_Ziebell: \"Industriedesigner, der alle technischen Aspekte des Projekts entwickelt, von der Einrichtung bis zur Produktion.\",\n    Lupita_Ndlovu: \"Spekulative Erzählerin, die Kurzgeschichten und narrative Elemente entwickelt.\",\n    Gellert_Rozsas: \"Fiktiver Filmemacher, verantwortlich für die Produktion der Videos und Animationen.\",\n    Janos_Kovacs: \"Spezialist für zeitgenössische und neue Medienkunst, entwickelt den konzeptuellen Rahmen für die Ausstellung der Projekte.\"\n  }\n};"
+    "panelIntro": "Each project within No Reference is developed through the collaboration of multiple actants with diverse cultural, territorial, and disciplinary backgrounds. These contributors bring different perspectives and methodologies into dialogue. Rather than adhering to fixed roles, actants engage in transversal exchanges that shape the process through mutual influence and adaptive, entangled making.\n\nThis assembly of collaborators forms a dynamic, non-hierarchical network in which human and nonhuman agencies — including organic, inorganic, and digital forms — are regarded with equal ontological significance. Through this entangled approach, each project becomes an ecosystem of interdependent relationships where knowledge production is collective, emergent, and regenerative.\n\nOur aim is to foster a framework where disciplinary boundaries dissolve, enabling speculative practices, critical inquiry, and experimentation.",
+    "actants": [
+      {
+        "id": "pgn",
+        "imageKey": "Pgn",
+        "name": "Gerardo Nolasco",
+        "role": "Project Coordinator",
+        "description": "Multidisciplinary artist who supervises all phases of the projects, from initial concept development to public presentation. Gerardo integrates research and visual processes to maintain coherence between the conceptual and material layers of each work."
+      },
+      {
+        "id": "pjm",
+        "imageKey": "Pjm",
+        "name": "Jose Magana",
+        "role": "Research Lead",
+        "description": "Cultural anthropologist dedicated to exploring the relationships between technology, territory, and society. Jose conducts ethnographic fieldwork and contextual analysis, translating lived experience and historical patterns into research frameworks that inform the collective process."
+      },
+      {
+        "id": "phy",
+        "imageKey": "Phy",
+        "name": "Hiyori Yoshida",
+        "role": "Composer & Sound Artist",
+        "description": "Experimental composer whose work investigates sonic ecologies and material resonance. Hiyori develops sound installations and generative compositions that translate environmental and digital data into immersive sound experiences."
+      },
+      {
+        "id": "pid",
+        "imageKey": "Pid",
+        "name": "Iska Dimalanta",
+        "role": "Creative Technologist",
+        "description": "Coder focused on experimental interfaces and algorithmic art. Iska designs custom software tools and interactive systems that expand the project’s digital narrative structures and enable speculative modes of participation."
+      },
+      {
+        "id": "psr",
+        "imageKey": "Psr",
+        "name": "Soren Ravn",
+        "role": "Visual Designer & 3D Artist",
+        "description": "Handles the implementation of visual design, 3D modeling, and extended reality environments. Soren’s work bridges physical and digital aesthetics, translating conceptual research into spatial and visual languages."
+      },
+      {
+        "id": "pfv",
+        "imageKey": "Pfv",
+        "name": "Fenja Vollbrecht",
+        "role": "Scientific Consultant",
+        "description": "Provides scientific and ecological insight to contextualize each project’s conceptual grounding. Fenja’s expertise in environmental systems helps align artistic exploration with regenerative ecological ethics."
+      },
+      {
+        "id": "ptz",
+        "imageKey": "Ptz",
+        "name": "Tobias Ziebell",
+        "role": "Industrial Designer",
+        "description": "Develops the technical frameworks that support each project, from prototyping and fabrication to final installation. Tobias combines engineering precision with speculative design thinking to materialize complex hybrid structures."
+      },
+      {
+        "id": "pln",
+        "imageKey": "Pln",
+        "name": "Lupita Ndlovu",
+        "role": "Writer & Narrative Developer",
+        "description": "Speculative writer who creates short stories, poetic fragments, and world-building texts. Lupita’s writing expands the narrative dimension of the projects, introducing fictional and philosophical layers that reshape how stories are told within art and technology."
+      },
+      {
+        "id": "pgr",
+        "imageKey": "Pgr",
+        "name": "Gellert Rozsas",
+        "role": "Filmmaker & Animator",
+        "description": "Filmmaker working with hybrid techniques that merge documentary, fiction, and machinima. Gellert produces the moving image components of the projects, crafting experimental films and video installations that reveal the tensions between human perception and machine vision."
+      },
+      {
+        "id": "pjk",
+        "imageKey": "Pjk",
+        "name": "Janos Kovacs",
+        "role": "Curator & Theorist",
+        "description": "Specialized in contemporary and new media art, Janos develops conceptual frameworks and exhibition strategies for each project. His curatorial practice explores the intersections of speculative aesthetics, posthuman thought, and technological imagination."
+      }
+    ]
   }
 }
