@@ -1,20 +1,40 @@
 import React, { useState } from "react";
 
+const API_BASE =
+  (import.meta as any).env?.VITE_BACKEND_URL || "http://127.0.0.1:5000";
+
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
 
-    // Simulate sending…
-    setTimeout(() => {
-      // fake success
-      setStatus("sent");
-      (e.currentTarget as HTMLFormElement).reset();
-    }, 800);
+    const form = new FormData(e.currentTarget);
+    const payload = {
+      name: String(form.get("name") || ""),
+      email: String(form.get("email") || ""),
+      message: String(form.get("message") || ""),
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        (e.currentTarget as HTMLFormElement).reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -27,7 +47,6 @@ export default function ContactForm() {
         mt-5
       "
     >
-
       {/* inner console panel */}
       <div className="p-3">
         <div
@@ -56,6 +75,7 @@ export default function ContactForm() {
                   focus:shadow-[inset_1px_1px_0_#4b5563,inset_-1px_-1px_0_#9aa9b7]
                 "
                 placeholder="C:\\> type your name"
+                autoComplete="name"
               />
             </div>
 
@@ -77,26 +97,7 @@ export default function ContactForm() {
                   focus:shadow-[inset_1px_1px_0_#4b5563,inset_-1px_-1px_0_#9aa9b7]
                 "
                 placeholder="C:\\> name@example.com"
-              />
-            </div>
-
-            {/* Subject */}
-            <div>
-              <label className="block text-stone-300 text-[12px] mb-1">
-                Subject
-              </label>
-              <input
-                name="subject"
-                required
-                className="
-                  w-full font-dos text-[13px] text-stone-200
-                  bg-[#0a0a0a]
-                  border border-[#4b5563]
-                  shadow-[inset_1px_1px_0_#1f1f1f,inset_-1px_-1px_0_#2d2d2d]
-                  px-2 py-[6px] outline-none
-                  focus:shadow-[inset_1px_1px_0_#4b5563,inset_-1px_-1px_0_#9aa9b7]
-                "
-                placeholder="C:\\> subject"
+                autoComplete="email"
               />
             </div>
 
@@ -141,7 +142,7 @@ export default function ContactForm() {
                 className="
                   btn95 cursor-pointer px-3 py-1 font-dos text-[12px]
                   bg-pink-400 border border-[#4b5563]
-                  active:trans late-y-[1px]
+                  active:translate-y-[1px]
                 "
               >
                 CLEAR
