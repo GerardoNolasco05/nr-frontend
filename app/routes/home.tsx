@@ -42,14 +42,14 @@ export default function Home() {
   const [progress, setProgress] = useState(0);                         // 0..100
   const [pdfSrc, setPdfSrc] = useState<string | null>(null);           // show PDF when set
 
-  // show overlay 2s after choosing a project image
+  // show overlay 1s after choosing a project image
   useEffect(() => {
     setShowOverlay(false);
     setIsLoading(false);
     setProgress(0);
     setPdfSrc(null);
     if (projectView !== null) {
-      const t = setTimeout(() => setShowOverlay(true), 2000);
+      const t = setTimeout(() => setShowOverlay(true), 1000);
       return () => clearTimeout(t);
     }
   }, [projectView]);
@@ -105,16 +105,22 @@ export default function Home() {
         // If PDF is loaded, show PDF (only pages, no UI) — scrollbar visually hidden
         if (pdfSrc) {
           return (
-            <div className="flex justify-center items-center w-full h-full">
-              <div className="relative w-[100%] h-[750px] ml-1 overflow-hidden">
-                {/* Push iframe scrollbar out of view but keep scrolling via mouse wheel */}
+            <div className="w-full">
+              <div
+                className="
+                  relative w-full
+                  h-[56vh]              /* 👈 taller: try 70–80vh */
+                  mb-2                  /* leaves room above navbar bottom strip */
+                  bg-black
+                  overflow-hidden       /* hides visible scrollbar area */
+                "
+              >
+                {/* Push the iframe's vertical scrollbar out of view but keep wheel scroll */}
                 <iframe
                   src={pdfOnlyPages(pdfSrc)}
                   title="Document"
                   className="h-full w-[calc(100%+18px)] -mr-[18px]"
                 />
-                {/* Optional: right mask (extra safety for some browsers) */}
-                <div className="pointer-events-none absolute top-0 right-0 h-full w-[2px] bg-white/0" />
               </div>
             </div>
           );
